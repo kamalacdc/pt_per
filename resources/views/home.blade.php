@@ -6,10 +6,10 @@
         <div class="carousel-inner">
             @forelse($slides as $index => $slide)
                 <div class="carousel-item @if ($index === 0) active @endif">
-                    <img src="{{ asset($slide['image']) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}">
+                    <img src="{{ asset('storage/carousel/' . $slide->filename) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>{{ $slide['title'] ?? '' }}</h5>
-                        <p>{{ $slide['subtitle'] ?? '' }}</p>
+                        <h5>{{ $slide->title ?? '' }}</h5>
+                        <p>{{ $slide->description ?? '' }}</p>
                     </div>
                 </div>
             @empty
@@ -28,7 +28,7 @@
     </div>
 
     {{-- ================= SERVICES ================= --}}
-    <section class="py-5 container">
+    <section id="services" class="py-5 container">
         <h2 class="mb-4 text-center">Layanan Kami</h2>
         <div class="row g-4">
             @foreach ($services as $service)
@@ -49,17 +49,16 @@
 
     {{-- ================= ABOUT ================= --}}
     @if ($about)
-        <section class="py-5 bg-light">
+        <section id="about" class="py-5 bg-light">
             <div class="container text-center">
                 <h2>Tentang Kami</h2>
-                <p class="lead">{!! Str::limit($about->content, 300) !!}</p>
-                <a href="{{ url('/tentang-kami') }}" class="btn btn-primary">Selengkapnya</a>
+                <p class="lead">{!! $about->content !!}</p>
             </div>
         </section>
     @endif
 
     {{-- ================= PARTNERS ================= --}}
-    <section class="py-5 container">
+    <section id="partners" class="py-5 container">
         <h2 class="mb-4 text-center">Partner Kami</h2>
         <div class="row g-4 text-center">
             @foreach ($partners as $partner)
@@ -71,7 +70,7 @@
     </section>
 
     {{-- ================= TESTIMONIALS ================= --}}
-    <section class="py-5 bg-light">
+    <section id="testimonials" class="py-5 bg-light">
         <div class="container">
             <h2 class="mb-4 text-center">Testimoni</h2>
             <div class="row g-4">
@@ -90,7 +89,7 @@
     </section>
 
     {{-- ================= POSTS ================= --}}
-    <section class="py-5 container">
+    <section id="posts" class="py-5 container">
         <h2 class="mb-4 text-center">Artikel Terbaru</h2>
         <div class="row g-4">
             @foreach ($posts as $post)
@@ -112,7 +111,7 @@
     </section>
 
     {{-- ================= GALLERY ================= --}}
-    <section class="py-5 bg-light">
+    <section id="gallery" class="py-5 bg-light">
         <div class="container">
             <h2 class="mb-4 text-center">Galeri</h2>
             <div class="row g-3">
@@ -130,7 +129,7 @@
     </section>
 
     {{-- ================= BRANCHES ================= --}}
-    <section class="py-5 container">
+    <section id="branches" class="py-5 container">
         <h2 class="mb-4 text-center">Cabang Kami</h2>
         <div class="row g-4">
             @foreach ($branches as $branch)
@@ -147,7 +146,7 @@
     </section>
 
     {{-- ================= PROJECTS ================= --}}
-    <section class="py-5 bg-light">
+    <section id="projects" class="py-5 bg-light">
         <div class="container">
             <h2 class="mb-4 text-center">Proyek Terbaru</h2>
             <div class="row g-4">
@@ -168,4 +167,5 @@
             </div>
         </div>
     </section>
+
 @endsection

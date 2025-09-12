@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             TestimonialSeeder::class,
             PostCategorySeeder::class,
             AdminSeeder::class,
-    
+            CarouselSeeder::class,
+
         ]);
     }
 }

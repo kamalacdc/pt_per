@@ -19,12 +19,12 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        // Pastikan slides selalu array (hindari null)
-        $slides = [
-        ['image' => 'images/slide-1.jpg', 'title' => 'Selamat Datang', 'subtitle' => 'pt .... bergerak di bidang it dan konsultan'],
-        ['image' => 'images/slide-2.jpg', 'title' => 'kami ada untuk anda', 'subtitle' => 'dimanapun dan kapanpun anda dapat menghubungi kami'],
-        ['image' => 'images/slide-3.jpg', 'title' => 'pelayanan terbaik', 'subtitle' => 'kami memberikan pelayanan sesuai kebutuhan anda'],
-    ];
+        // Ambil data carousel dari database yang aktif dan urutkan
+        $slides = \App\Models\Carousel::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
         // cek apakah branches table punya kolom sort
         $branchesQuery = Branch::query();
         try {

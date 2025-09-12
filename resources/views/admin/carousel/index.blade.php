@@ -1,129 +1,70 @@
-{{-- resources/views/carousel/index.blade.php --}}
+
 
 @extends('admin.layouts.app')
 
+@section('title', 'Daftar Hero Carousel')
+
 @section('content')
-<div class="container py-4">
-    <h2 class="mb-4">Manajemen Hero Carousel</h2>
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <h4>Daftar Hero Carousel</h4>
+    <a href="{{ route('admin.carousel.create') }}" class="btn btn-primary">Tambah Gambar</a>
+</div>
 
-    {{-- Flash Message --}}
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
-    {{-- Daftar Gambar Saat Ini --}}
-    <div class="row mb-5">
-        @foreach($carousels as $item)
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img
-                        src="{{ asset('storage/carousel/' . $item->filename) }}"
-                        class="card-img-top"
-                        alt="Carousel Image">
-                    <div class="card-body text-center">
-                        <button
-                            class="btn btn-sm btn-warning"
-                            data-toggle="modal"
-                            data-target="#editModal-{{ $item->id }}">
-                            Ganti
-                        </button>
-                        <form
-                            action="{{ route('carousel.destroy', $item->id) }}"
-                            method="POST"
-                            class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="btn btn-sm btn-danger"
-                                onclick="return confirm('Hapus gambar ini?')">
-                                Hapus
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal: Ganti Gambar -->
-            <div
-                class="modal fade"
-                id="editModal-{{ $item->id }}"
-                tabindex="-1"
-                role="dialog">
-                <div class="modal-dialog" role="document">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+            <th>Gambar</th>
+            <th>Urut</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($carousels as $i => $item)
+            <tr>
+                <td>{{ $carousels->firstItem() + $i }}</td>
+                <td>{{ $item->title }}</td>
+                <td>{{ Str::limit($item->description, 50) }}</td>
+                <td style="width:140px">
+                    @if($item->filename)
+                        <img
+                            src="{{ asset('storage/carousel/' . $item->filename) }}"
+                            alt="Carousel {{ $item->id }}"
+                            style="max-width:120px; height:auto;">
+                    @endif
+                </td>
+                <td>{{ $item->sort_order }}</td>
+                <td>
+                    <a
+                        href="{{ route('admin.carousel.edit', $item) }}"
+                        class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
                     <form
-                        action="{{ route('carousel.update', $item->id) }}"
+                        action="{{ route('admin.carousel.destroy', $item) }}"
                         method="POST"
-                        enctype="multipart/form-data">
+                        style="display:inline"
+                        onsubmit="return confirm('Hapus gambar ini?');">
                         @csrf
-                        @method('PUT')
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Ganti Gambar</h5>
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Pilih Gambar Baru</label>
-                                    <input
-                                        type="file"
-                                        name="hero_image"
-                                        class="form-control-file"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-dismiss="modal">
-                                    Batal
-                                </button>
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary">
-                                    Simpan Perubahan
-                                </button>
-                            </div>
-                        </div>
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-danger">
+                            Hapus
+                        </button>
                     </form>
-                </div>
-            </div>
+                </td>
+            </tr>
         @endforeach
-    </div>
+    </tbody>
+</table>
 
-    <hr>
-
-    {{-- Form Unggah Gambar Baru --}}
-    <h4>Tambah Gambar Baru</h4>
-    <form
-        action="{{ route('carousel.store') }}"
-        method="POST"
-        enctype="multipart/form-data">
-        @csrf
-        <div class="form-group">
-            <label>Pilih Gambar</label>
-            <input
-                type="file"
-                name="hero_image[]"
-                class="form-control-file"
-                multiple
-                required>
-            <small class="form-text text-muted">
-                Anda dapat memilih lebih dari satu gambar sekaligus.
-            </small>
-        </div>
-        <button
-            type="submit"
-            class="btn btn-success">
-            Unggah
-        </button>
-    </form>
+<div class="mt-3">
+    {{ $carousels->links() }}
 </div>
 @endsection
+```

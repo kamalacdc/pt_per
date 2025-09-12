@@ -18,19 +18,19 @@
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('galeri*') ? 'active' : '' }}" href="{{ route('galeri.index') }}">Galeri</a>
+                        <a class="nav-link" href="#gallery">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('services*') ? 'active' : '' }}" href="{{ route('services.index') }}">Layanan</a>
+                        <a class="nav-link" href="#services">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">Berita</a>
+                        <a class="nav-link" href="#posts">Berita</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('testimoni*') ? 'active' : '' }}" href="{{ route('testimoni.index') }}">testimoni</a>
+                        <a class="nav-link" href="#testimonials">Testimoni</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('contact*') ? 'active' : '' }}" href="{{ route('contact.create') }}">Kontak</a>
+                        <a class="nav-link" href="#contact">Kontak</a>
                     </li>
                 </ul>
             </div>

@@ -10,19 +10,19 @@ class PostCategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $categories = [
-            'Berita',
-            'Artikel',
-            'Pengumuman',
-            'Event',
-        ];
+        // $categories = [
+        //     'Berita',
+        //     'Artikel',
+        //     'Pengumuman',
+        //     'Event',
+        // ];
 
-        foreach ($categories as $category) {
-            PostCategory::create([
-                'name' => $category,
-                'slug' => Str::slug($category),
-                'description' => $category . ' terbaru dari perusahaan.',
-            ]);
-        }
+        // foreach ($categories as $category) {
+        //     PostCategory::create([
+        //         'name' => $category,
+        //         'slug' => Str::slug($category),
+        //         'description' => $category . ' terbaru dari perusahaan.',
+        //     ]);
+        // }
     }
 }

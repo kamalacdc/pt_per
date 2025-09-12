@@ -14,6 +14,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\CarouselController;
 // halman utama
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -21,6 +22,16 @@ Route::prefix('profil')->group(function () {
     Route::get('{slug}', [PageController::class, 'show'])->name('pages.show');
 });
 Route::resource('posts', PostController::class);
+
+// Redirects for one-page design
+Route::redirect('/galeri', '/#gallery');
+Route::redirect('/services', '/#services');
+Route::redirect('/layanan', '/#services');
+Route::redirect('/artikel', '/#posts');
+Route::redirect('/testimoni', '/#testimonials');
+Route::redirect('/mitra', '/#partners');
+Route::redirect('/project', '/#projects');
+Route::redirect('/tentang-kami', '/#about');
 
 Route::resource('layanan', ServiceController::class)->only(['index','show']);
 Route::resource('project', ProjectController::class)->only(['index','show']);
@@ -41,6 +52,7 @@ Route::post('contact-us', [ContactController::class, 'store'])->name('contact.st
 
 // Alias untuk login bawaan (biar error tidak muncul)
 // 🔹 Alias default login Laravel supaya error "Route [login] not defined" hilang
+
 Route::get('/login', function () {
     return redirect()->route('admin.login');
 })->name('login');
@@ -60,5 +72,12 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     Route::resource('services', AdminServiceController::class);
+    Route::resource('carousel', CarouselController::class);
+    Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    Route::resource('gallery_items', \App\Http\Controllers\Admin\GalleryItemController::class);
+    Route::resource('branches', \App\Http\Controllers\Admin\BranchController::class);
+    Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+    Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
 });
-
