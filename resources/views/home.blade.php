@@ -62,7 +62,7 @@
 
     {{-- ================= PARTNERS ================= --}}
     <section id="partners" class="py-5 container">
-        <h2 class="mb-4 text-center">Partner Kami</h2>
+        <h2 class="mb-4 text-center">Mitra Kami</h2>
         <div class="row g-4 text-center">
             @foreach ($partners as $partner)
                 <div class="col-6 col-md-2">
