@@ -11,9 +11,9 @@
             <div class="container d-flex justify-content-between align-items-center py-1">
 
                 <div class="contact-info text-dark small d-none d-lg-flex">
-                    <i class="fas fa-envelope me-2"></i> fadiriteknik@gmail.com
+                    <i class="fas fa-envelope me-2"></i> 
                     <span class="mx-3">|</span>
-                    <i class="fas fa-phone me-2"></i> (087723710329)
+                    <i class="fas fa-phone me-2"></i> ()
                 </div>
 
                 {{-- Toggler (mobile) --}}
@@ -50,7 +50,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="https://wa.me/6287723710329?text=Hai,%20saya%20ingin%20konsultasi">WhatsApp</a>
+                            href="https://wa.me/6281515127572?text=Hai,%20saya%20ingin%20konsultasi">WhatsApp</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary ms-3" href="{{ route('admin.login') }}">Login</a>
