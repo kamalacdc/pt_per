@@ -12,8 +12,8 @@
 
                 <div class="contact-info text-dark small d-none d-lg-flex">
                     <i class="fas fa-envelope me-2"></i> 
-                    <span class="mx-3">|</span>
-                    <i class="fas fa-phone me-2"></i> ()
+                    <span class="mx-3"></span>
+                    <i class="fas fa-phone me-2"></i> 
                 </div>
 
                 {{-- Toggler (mobile) --}}
@@ -43,7 +43,7 @@
                         <a class="nav-link" href="#posts">Berita</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimoni</a>
+                        <a class="nav-link" href="#testimonials">Keunggulan yang Kami Tawarkan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#gallery">Galeri</a>

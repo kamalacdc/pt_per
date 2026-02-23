@@ -31,8 +31,7 @@
                 <h5>Kontak Kami</h5>
                 <ul class="list-unstyled">
                     <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Guyangan 004/001 Betek Barat Kec. Mojoagung Kab. Jombang</li>
-                    <li><i class="fas fa-phone me-2"></i> +62 81232113561 </li>
-                    <li><i class="fas fa-envelope me-2"></i> PTlanangteknologigroup</li>
+                    <li><i class="fas fa-envelope me-2"></i> PT.LANANGTEKNOLOGIGROUP</li>
                 </ul>
             </div>
 
@@ -40,7 +39,7 @@
             <div class="col-lg-3 col-md-6">
                 <h5>Lokasi Kantor</h5>
                 <iframe
-                    src="https://www.google.com/maps/@-7.5446295,112.3455179,20.5z?entry=ttu&g_ep=EgoyMDI2MDIxOC4wIKXMDSoASAFQAw%3D%3D"
+                    src="https://www.google.com/maps/place/F84W%2B4CG,+Jl.+Sayyid+Sulaiman,+Betek+Utara,+Betek,+Kec.+Mojoagung,+Kabupaten+Jombang,+Jawa+Timur+61482/@-7.5447439,112.3462508,21z/data=!4m6!3m5!1s0x2e786cbb4e8e4755:0xaf43fbd1d1b7ae13!8m2!3d-7.54471!4d112.3461874!16s%2Fg%2F11j0yk2sk6?entry=ttu&g_ep=EgoyMDI2MDIxOC4wIKXMDSoASAFQAw%3D%3D"
                     width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
