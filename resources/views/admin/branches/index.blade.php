@@ -21,6 +21,7 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Sort</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -33,6 +34,13 @@
                 <td>{{ $branch->phone }}</td>
                 <td>{{ $branch->email }}</td>
                 <td>{{ $branch->sort }}</td>
+                <td>
+                    @if($branch->is_active)
+                        <span class="badge bg-success">Active</span>
+                    @else
+                        <span class="badge bg-danger">Inactive</span>
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('admin.branches.edit', $branch) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('admin.branches.destroy', $branch) }}" method="POST" style="display:inline" onsubmit="return confirm('Hapus branch ini?');">

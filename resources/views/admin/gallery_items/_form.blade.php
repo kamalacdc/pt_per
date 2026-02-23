@@ -1,6 +1,6 @@
 <div class="mb-3">
     <label>Gallery</label>
-    <select name="gallery_id" class="form-control" required>
+    <select name="gallery_id" class="form-control" required style="z-index: 1050; background-color: white; color: black;">
         <option value="">Pilih Gallery</option>
         @foreach($galleries as $gallery)
             <option value="{{ $gallery->id }}" {{ old('gallery_id', $galleryItem->gallery_id ?? '') == $gallery->id ? 'selected' : '' }}>
@@ -14,25 +14,17 @@
 </div>
 
 <div class="mb-3">
-    <label>Path</label>
-    <input type="text" name="path" class="form-control" required value="{{ old('path', $galleryItem->path ?? '') }}">
-    @error('path')
+    <label>Image</label>
+    <input type="file" name="image" class="form-control" {{ isset($galleryItem) ? '' : 'required' }}>
+    @error('image')
         <div class="text-danger">{{ $message }}</div>
     @enderror
 </div>
 
 <div class="mb-3">
-    <label>Type</label>
-    <input type="text" name="type" class="form-control" value="{{ old('type', $galleryItem->type ?? '') }}">
-    @error('type')
-        <div class="text-danger">{{ $message }}</div>
-    @enderror
-</div>
-
-<div class="mb-3">
-    <label>Caption</label>
-    <input type="text" name="caption" class="form-control" value="{{ old('caption', $galleryItem->caption ?? '') }}">
-    @error('caption')
+    <label>Title</label>
+    <input type="text" name="title" class="form-control" value="{{ old('title', $galleryItem->title ?? '') }}">
+    @error('title')
         <div class="text-danger">{{ $message }}</div>
     @enderror
 </div>
@@ -43,4 +35,12 @@
     @error('category')
         <div class="text-danger">{{ $message }}</div>
     @enderror
+</div>
+
+<div class="mb-3 form-check">
+    <input type="hidden" name="is_active" value="0">
+    <label>
+        <input type="checkbox" name="is_active" value="1" {{ old('is_active', $galleryItem->is_active ?? true) ? 'checked' : '' }}>
+        Aktif
+    </label>
 </div>

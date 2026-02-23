@@ -25,7 +25,9 @@ class PageController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
-        ]);
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string'
+                ]);
 
         $data['slug'] = Str::slug($data['title']);
 
@@ -45,6 +47,8 @@ class PageController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string'
         ]);
 
         $data['slug'] = Str::slug($data['title']);

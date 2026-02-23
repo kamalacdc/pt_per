@@ -11,7 +11,8 @@ use App\Models\{
     Branch,
     Page,
     Setting,
-    Project
+    Project,
+    Contact
 };
 use Illuminate\View\View;
 
@@ -53,10 +54,6 @@ class HomeController extends Controller
                 ->orderBy('sort')
                 ->limit(10)
                 ->get(),
-            'posts'         => Post::query()
-                ->latest()
-                ->limit(3)
-                ->get(),
             'galleryGroups' => GalleryItem::query()
                 ->latest()
                 ->limit(12)
@@ -67,6 +64,14 @@ class HomeController extends Controller
                 ->latest()
                 ->limit(6)
                 ->get(),
+        ]);
+    }
+    public function contacts()
+    {
+        $contact = Contact::query();
+        
+        return view('footer.blade', [
+            'contacts' => Contact::query()
         ]);
     }
 }

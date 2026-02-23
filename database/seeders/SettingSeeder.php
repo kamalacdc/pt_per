@@ -4,9 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class SettingSeeder extends Seeder {
     public function run(): void {
+        DB::table('settings')->insert([
+            [
+                'key' => 'master_password',
+                'value' => Hash::make('admin123'), // Default master password, change this as needed
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
         // DB::table('settings')->insert([
         //     [
         //         'key' => 'hero_slides',

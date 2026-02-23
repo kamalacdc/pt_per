@@ -19,4 +19,10 @@ class ContactController extends Controller
         Contact::create($request->validated());
         return back()->with('status','Pesan terkirim. Kami akan menghubungi Anda.');
     }
+
+    public function index()
+    {
+        $contacts = Contact::paginate(15);
+        return view('admin.kotak_masuk.index', compact('contacts'));
+    }
 }

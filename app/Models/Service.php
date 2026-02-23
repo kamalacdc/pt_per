@@ -17,7 +17,9 @@ class Service extends Model
         'sort'
     ];
 
-
+public function loadCount($relations){
+    //
+}
     protected $casts = [
         'is_active' => 'boolean',
     ];

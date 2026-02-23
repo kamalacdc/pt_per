@@ -4,7 +4,7 @@
 
 @section('content')
     <h4>Tambah Item Galeri</h4>
-    <form action="{{ route('admin.gallery_items.store') }}" method="POST">
+    <form action="{{ route('admin.gallery_items.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @include('admin.gallery_items._form', ['galleryItem' => null])
         <button type="submit" class="btn btn-primary">Simpan</button>

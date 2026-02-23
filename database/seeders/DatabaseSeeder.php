@@ -22,9 +22,12 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             SettingSeeder::class,
             TestimonialSeeder::class,
-            PostCategorySeeder::class,
+            GalleryItemSeeder::class,
+            ProjectSeeder::class,
             AdminSeeder::class,
             CarouselSeeder::class,
+            CategoriesSeeder::class,
+            PelangganSeeder::class,
 
         ]);
     }

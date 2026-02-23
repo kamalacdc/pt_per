@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: #f3f4f6;
+            background: #cedeff;
         }
         .login-card {
             max-width: 400px;
@@ -66,6 +66,10 @@
 
             <button type="submit" class="btn btn-primary btn-login">Login</button>
         </form>
+
+        <div class="text-center mt-3">
+            <a href="{{ route('admin.forgot.password') }}" class="text-decoration-none">Lupa Password?</a>
+        </div>
     </div>
 
 </body>

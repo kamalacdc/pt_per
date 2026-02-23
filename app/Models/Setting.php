@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     protected $fillable = ['key','value'];
-    protected $casts = ['value' => 'array'];
+    // protected $casts = ['value' => 'array'];
 
     public static function getValue(string $key, $default = null)
     {

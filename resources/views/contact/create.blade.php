@@ -19,10 +19,6 @@
       @error('email') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
     </div>
     <div>
-      <label class="block text-sm mb-1">Telepon</label>
-      <input type="text" name="phone" class="w-full border rounded p-2" value="{{ old('phone') }}">
-    </div>
-    <div>
       <label class="block text-sm mb-1">Pesan</label>
       <textarea name="message" rows="5" class="w-full border rounded p-2">{{ old('message') }}</textarea>
       @error('message') <p class="text-sm text-red-600">{{ $message }}</p> @enderror

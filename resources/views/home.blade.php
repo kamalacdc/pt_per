@@ -6,7 +6,8 @@
         <div class="carousel-inner">
             @forelse($slides as $index => $slide)
                 <div class="carousel-item @if ($index === 0) active @endif">
-                    <img src="{{ asset('storage/carousel/' . $slide->filename) }}" class="d-block w-100" alt="Slide {{ $index + 1 }}">
+                    <img src="{{ asset('storage/carousel/' . $slide->filename) }}" class="d-block w-100"
+                        alt="Slide {{ $index + 1 }}">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slide->title ?? '' }}</h5>
                         <p>{{ $slide->description ?? '' }}</p>
@@ -26,6 +27,16 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
+    {{-- ================= ABOUT ================= --}}
+    @if ($about)
+        <section id="about" class="py-5 bg-light">
+            <div class="container text-center">
+                <h2>{{ $about->title }}</h2>
+                <p class="lead">{!! $about->content !!}</p>
+                <p>{{ $about->meta_description }}</p>
+            </div>
+        </section>
+    @endif
 
     {{-- ================= SERVICES ================= --}}
     <section id="services" class="py-5 container">
@@ -47,15 +58,7 @@
         </div>
     </section>
 
-    {{-- ================= ABOUT ================= --}}
-    @if ($about)
-        <section id="about" class="py-5 bg-light">
-            <div class="container text-center">
-                <h2>Tentang Kami</h2>
-                <p class="lead">{!! $about->content !!}</p>
-            </div>
-        </section>
-    @endif
+
 
     {{-- ================= PARTNERS ================= --}}
     <section id="partners" class="py-5 container">
@@ -63,7 +66,7 @@
         <div class="row g-4 text-center">
             @foreach ($partners as $partner)
                 <div class="col-6 col-md-2">
-                    <img src="{{ asset('storage/' . $partner->logo) }}" class="img-fluid" alt="{{ $partner->name }}">
+                    <img src="{{ asset('storage/' . $partner->logo_path) }}" class="img-fluid" alt="{{ $partner->name }}">
                 </div>
             @endforeach
         </div>
@@ -78,8 +81,8 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <p>"{{ $testimonial->content }}"</p>
-                                <h6 class="mt-3">- {{ $testimonial->author }}</h6>
+                                <p>"{{ $testimonial->body }}"</p>
+                                <h6 class="mt-3">- {{ $testimonial->name }}</h6>
                             </div>
                         </div>
                     </div>
@@ -89,7 +92,7 @@
     </section>
 
     {{-- ================= POSTS ================= --}}
-    <section id="posts" class="py-5 container">
+    {{-- <section id="posts" class="py-5 container">
         <h2 class="mb-4 text-center">Artikel Terbaru</h2>
         <div class="row g-4">
             @foreach ($posts as $post)
@@ -108,7 +111,7 @@
                 </div>
             @endforeach
         </div>
-    </section>
+    </section> --}}
 
     {{-- ================= GALLERY ================= --}}
     <section id="gallery" class="py-5 bg-light">
@@ -128,22 +131,7 @@
         </div>
     </section>
 
-    {{-- ================= BRANCHES ================= --}}
-    <section id="branches" class="py-5 container">
-        <h2 class="mb-4 text-center">Cabang Kami</h2>
-        <div class="row g-4">
-            @foreach ($branches as $branch)
-                <div class="col-md-3">
-                    <div class="card h-100 text-center">
-                        <div class="card-body">
-                            <h5>{{ $branch->name }}</h5>
-                            <p>{{ $branch->address }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
+
 
     {{-- ================= PROJECTS ================= --}}
     <section id="projects" class="py-5 bg-light">
@@ -167,5 +155,20 @@
             </div>
         </div>
     </section>
-
+    {{-- ================= BRANCHES ================= --}}
+    <section id="branches" class="py-5 container">
+        <h2 class="mb-4 text-center">Cabang Kami</h2>
+        <div class="row g-4">
+            @foreach ($branches as $branch)
+                <div class="col-md-3">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h5>{{ $branch->name }}</h5>
+                            <p>{{ $branch->address }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
 @endsection

@@ -55,3 +55,11 @@
         <div class="text-danger">{{ $message }}</div>
     @enderror
 </div>
+
+<div class="mb-3 form-check">
+    <input type="hidden" name="is_active" value="0">
+    <label>
+        <input type="checkbox" name="is_active" value="1" {{ old('is_active', $testimonial->is_active ?? true) ? 'checked' : '' }}>
+        Aktif
+    </label>
+</div>

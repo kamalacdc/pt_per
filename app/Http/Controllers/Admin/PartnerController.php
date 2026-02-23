@@ -26,6 +26,7 @@ class PartnerController extends Controller
             'name' => 'required|string|max:255',
             'logo_path' => 'nullable|image|max:2048',
             'url' => 'nullable|url',
+            'is_active' => 'required|boolean',
         ]);
 
         if ($request->hasFile('logo_path')) {
@@ -50,6 +51,7 @@ class PartnerController extends Controller
             'name' => 'required|string|max:255',
             'logo_path' => 'nullable|image|max:2048',
             'url' => 'nullable|url',
+            'is_active' => 'required|boolean',
         ]);
 
         if ($request->hasFile('logo_path')) {

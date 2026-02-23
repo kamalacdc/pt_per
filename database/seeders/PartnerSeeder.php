@@ -10,9 +10,9 @@ class PartnerSeeder extends Seeder
     public function run(): void
     {
         $partners = [
-            ['name' => 'Google', 'logo' => 'partners/google.png', 'url' => 'https://www.google.com'],
-            ['name' => 'Microsoft', 'logo' => 'partners/microsoft.png', 'url' => 'https://www.microsoft.com'],
-            ['name' => 'Amazon', 'logo' => 'partners/amazon.png', 'url' => 'https://www.amazon.com'],
+            ['name' => 'Google', 'logo_path' => 'partners/google.png', 'url' => 'https://www.google.com'],
+            ['name' => 'Microsoft', 'logo_path' => 'partners/microsoft.png', 'url' => 'https://www.microsoft.com'],
+            ['name' => 'Amazon', 'logo_path' => 'partners/amazon.png', 'url' => 'https://www.amazon.com'],
         ];
 
         foreach ($partners as $partner) {

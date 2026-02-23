@@ -19,6 +19,7 @@
             <th>Logo</th>
             <th>Nama</th>
             <th>URL</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -33,6 +34,13 @@
                 </td>
                 <td>{{ $partner->name }}</td>
                 <td>{{ $partner->url }}</td>
+                <td>
+                    @if($partner->is_active)
+                        <span class="badge bg-success">Active</span>
+                    @else
+                        <span class="badge bg-danger">Inactive</span>
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('admin.partners.edit', $partner) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('admin.partners.destroy', $partner) }}" method="POST" style="display:inline" onsubmit="return confirm('Hapus partner ini?');">

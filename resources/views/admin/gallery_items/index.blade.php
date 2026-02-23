@@ -17,10 +17,10 @@
         <tr>
             <th>No</th>
             <th>Gallery</th>
-            <th>Path</th>
-            <th>Type</th>
-            <th>Caption</th>
+            <th>Image</th>
+            <th>Title</th>
             <th>Category</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -29,10 +29,22 @@
             <tr>
                 <td>{{ $galleryItems->firstItem() + $i }}</td>
                 <td>{{ $galleryItem->gallery->name ?? '' }}</td>
-                <td>{{ $galleryItem->path }}</td>
-                <td>{{ $galleryItem->type }}</td>
-                <td>{{ $galleryItem->caption }}</td>
+                <td>
+                    @if($galleryItem->image)
+                        <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->title }}" style="max-width: 100px; max-height: 100px;">
+                    @else
+                        N/A
+                    @endif
+                </td>
+                <td>{{ $galleryItem->title }}</td>
                 <td>{{ $galleryItem->category }}</td>
+                <td>
+                    @if($galleryItem->is_active)
+                        <span class="badge bg-success">Active</span>
+                    @else
+                        <span class="badge bg-danger">Inactive</span>
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route('admin.gallery_items.edit', $galleryItem) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('admin.gallery_items.destroy', $galleryItem) }}" method="POST" style="display:inline" onsubmit="return confirm('Hapus gallery item ini?');">

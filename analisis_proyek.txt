@@ -1,0 +1,222 @@
+ANALISIS PROYEK: WEBSITE PERUSAHAAN BERBASIS LARAVEL
+
+1. KONSEP PROYEK
+Proyek ini adalah pengembangan website perusahaan yang menggunakan framework Laravel untuk membangun sistem manajemen konten (CMS) yang lengkap. Konsep utama adalah menciptakan platform digital yang memungkinkan perusahaan mempresentasikan layanan, proyek, testimoni, galeri, dan informasi lainnya kepada publik, serta menyediakan panel admin untuk mengelola konten secara efisien.
+
+Fitur utama:
+- Halaman depan dengan desain satu halaman (one-page) yang mencakup berbagai section
+- Sistem blog/artikel dengan kategori
+- Galeri foto dengan kategori
+- Formulir kontak
+- Panel admin untuk CRUD semua konten
+- Sistem autentikasi admin
+- Pengaturan dinamis melalui tabel settings
+
+2. PERENCANAAN PROYEK
+Perencanaan proyek meliputi:
+- Arsitektur MVC Laravel
+- Database design dengan migrations
+- Routing untuk public dan admin
+- Views dengan Blade templates
+- Controllers terpisah untuk public dan admin
+- Models dengan relationships
+- Seeders untuk data awal
+- Middleware untuk autentikasi admin
+- Asset management dengan Vite
+
+Tahapan pengembangan:
+1. Setup Laravel project
+2. Design database schema
+3. Create migrations
+4. Build models dengan relationships
+5. Develop controllers
+6. Create views
+7. Implement admin panel
+8. Add seeders
+9. Testing dan deployment
+
+3. TEKNOLOGI DIGUNAKAN
+- Backend: Laravel 12, PHP 8.2+
+- Database: MySQL/PostgreSQL (via migrations)
+- Frontend: Blade templates, CSS, JavaScript
+- Build tool: Vite
+- Testing: Pest
+- Authentication: Laravel built-in auth untuk admin
+
+4. FITUR UTAMA
+- Public features:
+  - Home page dengan carousel, services, projects, testimonials, partners, gallery
+  - Blog posts dengan categories
+  - Contact form
+  - Dynamic pages (profil)
+- Admin features:
+  - Dashboard
+  - CRUD untuk semua entities
+  - File upload untuk images
+  - Status aktif/nonaktif
+  - Sorting untuk urutan tampilan
+
+5. STRUKTUR DATABASE (ENTITAS DAN RELATIONSHIPS)
+
+ENTITAS:
+
+1. Admins
+   - id (PK)
+   - name
+   - email (unique)
+   - password
+   - remember_token
+   - timestamps
+
+2. Branches
+   - id (PK)
+   - name
+   - address
+   - phone
+   - email
+   - map_embed
+   - is_active
+   - sort
+   - timestamps
+
+3. Carousels
+   - id (PK)
+   - title
+   - description
+   - filename
+   - sort_order
+   - is_active
+   - timestamps
+
+4. Contacts
+   - id (PK)
+   - name
+   - email
+   - phone
+   - message
+   - timestamps
+
+5. Galleries
+   - id (PK)
+   - title
+   - slug (unique)
+   - description
+   - timestamps
+
+6. GalleryItems
+   - id (PK)
+   - gallery_id (FK ke Galleries)
+   - title
+   - image
+   - category
+   - is_active
+   - timestamps
+
+7. Pages
+   - id (PK)
+   - title
+   - slug (unique)
+   - content
+   - meta_title
+   - meta_description
+   - is_active
+   - timestamps
+
+8. Partners
+   - id (PK)
+   - name
+   - logo_path
+   - url
+   - is_active
+   - timestamps
+
+9. PostCategories
+   - id (PK)
+   - name
+   - slug (unique)
+   - description
+   - timestamps
+
+10. Posts
+    - id (PK)
+    - post_category_id (FK ke PostCategories)
+    - title
+    - slug (unique)
+    - excerpt
+    - content
+    - thumb_path
+    - published_at
+    - is_active
+    - timestamps
+
+11. Projects
+    - id (PK)
+    - title
+    - slug (unique)
+    - excerpt
+    - content
+    - image
+    - is_active
+    - timestamps
+
+12. Services
+    - id (PK)
+    - title
+    - slug (unique)
+    - excerpt
+    - content
+    - icon
+    - image
+    - is_active
+    - sort
+    - timestamps
+
+13. Settings
+    - id (PK)
+    - key (unique)
+    - value
+    - timestamps
+
+14. Testimonials
+    - id (PK)
+    - name
+    - position
+    - company
+    - message
+    - photo
+    - is_active
+    - sort
+    - timestamps
+
+RELATIONSHIPS (ERD Sederhana):
+
+- GalleryItems -> Galleries (Many-to-One)
+- Posts -> PostCategories (Many-to-One)
+
+Tidak ada relationships kompleks lainnya. Semua entitas independen kecuali yang disebutkan di atas.
+
+6. ARSITEKTUR APLIKASI
+- Routes: web.php untuk public dan admin routes
+- Controllers: HomeController, ServiceController, dll untuk public; Admin\*Controller untuk admin
+- Models: Eloquent models dengan fillable dan casts
+- Views: resources/views dengan layouts dan partials
+- Middleware: AdminAuth untuk proteksi admin routes
+- Seeders: Untuk populate data awal
+
+7. KEAMANAN DAN BEST PRACTICES
+- CSRF protection
+- Input validation dengan Request classes
+- File upload handling
+- Soft deletes tidak digunakan (hard delete)
+- Authentication untuk admin
+- Unique slugs untuk SEO
+
+8. PENGEMBANGAN LANJUTAN
+- Tambahkan caching untuk performance
+- Implement API jika diperlukan
+- Add more admin features seperti bulk actions
+- Implement search functionality
+- Add multi-language support
+- Optimize images dan assets
+
+Kesimpulan: Proyek ini merupakan CMS lengkap untuk website perusahaan dengan arsitektur yang solid dan scalable menggunakan Laravel.

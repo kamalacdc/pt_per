@@ -26,11 +26,15 @@ class GalleryItemController extends Controller
     {
         $data = $request->validate([
             'gallery_id' => 'required|exists:galleries,id',
-            'path' => 'required|string|max:255',
-            'type' => 'nullable|string|max:255',
-            'caption' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'nullable|string|max:255',
             'category' => 'nullable|string|max:255',
+            'is_active' => 'required|boolean',
         ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('gallery_items', 'public');
+        }
 
         GalleryItem::create($data);
 
@@ -48,11 +52,19 @@ class GalleryItemController extends Controller
     {
         $data = $request->validate([
             'gallery_id' => 'required|exists:galleries,id',
-            'path' => 'required|string|max:255',
-            'type' => 'nullable|string|max:255',
-            'caption' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'nullable|string|max:255',
             'category' => 'nullable|string|max:255',
+            'is_active' => 'required|boolean',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($galleryItem->image && Storage::disk('public')->exists($galleryItem->image)) {
+                Storage::disk('public')->delete($galleryItem->image);
+            }
+            $data['image'] = $request->file('image')->store('gallery_items', 'public');
+        }
 
         $galleryItem->update($data);
 
@@ -62,6 +74,11 @@ class GalleryItemController extends Controller
 
     public function destroy(GalleryItem $galleryItem)
     {
+        // Delete the image file if it exists
+        if ($galleryItem->image && Storage::disk('public')->exists($galleryItem->image)) {
+            Storage::disk('public')->delete($galleryItem->image);
+        }
+
         $galleryItem->delete();
 
         return redirect()->route('admin.gallery_items.index')

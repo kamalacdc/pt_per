@@ -27,17 +27,16 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'location' => 'nullable|string|max:255',
-            'year' => 'nullable|integer',
-            'thumb_path' => 'nullable|image|max:2048',
+            'slug' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
             'excerpt' => 'nullable|string',
             'content' => 'nullable|string',
-            'service_id' => 'nullable|exists:services,id',
+            'is_active' => 'required|boolean',
         ]);
 
-        if ($request->hasFile('thumb_path')) {
-            $path = $request->file('thumb_path')->store('projects', 'public');
-            $data['thumb_path'] = $path;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('projects', 'public');
+            $data['image'] = $path;
         }
 
         $data['slug'] = Str::slug($data['title']);
@@ -58,20 +57,19 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:255',
-            'location' => 'nullable|string|max:255',
-            'year' => 'nullable|integer',
-            'thumb_path' => 'nullable|image|max:2048',
+            'slug' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
             'excerpt' => 'nullable|string',
             'content' => 'nullable|string',
-            'service_id' => 'nullable|exists:services,id',
+            'is_active' => 'required|boolean',
         ]);
 
-        if ($request->hasFile('thumb_path')) {
-            if ($project->thumb_path && Storage::disk('public')->exists($project->thumb_path)) {
-                Storage::disk('public')->delete($project->thumb_path);
+        if ($request->hasFile('image')) {
+            if ($project->image && Storage::disk('public')->exists($project->image)) {
+                Storage::disk('public')->delete($project->image);
             }
-            $path = $request->file('thumb_path')->store('projects', 'public');
-            $data['thumb_path'] = $path;
+            $path = $request->file('image')->store('projects', 'public');
+            $data['image'] = $path;
         }
 
         $data['slug'] = Str::slug($data['title']);
@@ -84,8 +82,8 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        if ($project->thumb_path && Storage::disk('public')->exists($project->thumb_path)) {
-            Storage::disk('public')->delete($project->thumb_path);
+        if ($project->image && Storage::disk('public')->exists($project->image)) {
+            Storage::disk('public')->delete($project->image);
         }
         $project->delete();
 

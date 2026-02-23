@@ -27,6 +27,7 @@ class BranchController extends Controller
             'phone' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'sort' => 'nullable|integer',
+            'is_active' => 'required|boolean',
         ]);
 
         $data['sort'] = $data['sort'] ?? 0;
@@ -50,6 +51,7 @@ class BranchController extends Controller
             'phone' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'sort' => 'nullable|integer',
+            'is_active' => 'required|boolean',
         ]);
 
         $branch->update($data);

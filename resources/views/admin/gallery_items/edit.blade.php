@@ -4,7 +4,7 @@
 
 @section('content')
     <h4>Edit Item Galeri</h4>
-    <form action="{{ route('admin.gallery_items.update', $galleryItem) }}" method="POST">
+    <form action="{{ route('admin.gallery_items.update', $galleryItem) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @include('admin.gallery_items._form')

@@ -17,7 +17,7 @@ class TestimonialController extends Controller
 
     public function create()
     {
-        return view('admin.testimonials.create');
+        return view('admin.testimonials.create', ['testimonial' => new Testimonial()]);
     }
 
     public function store(Request $request)
@@ -30,6 +30,8 @@ class TestimonialController extends Controller
             'body' => 'required|string',
             'published_at' => 'nullable|date',
             'sort' => 'nullable|integer',
+            'is_active' => 'required|boolean',
+
         ]);
 
         if ($request->hasFile('photo_path')) {
@@ -38,6 +40,7 @@ class TestimonialController extends Controller
         }
 
         $data['sort'] = $data['sort'] ?? 0;
+        $data['is_active'] = $request->boolean('is_active', true);
 
         Testimonial::create($data);
 
@@ -60,6 +63,8 @@ class TestimonialController extends Controller
             'body' => 'required|string',
             'published_at' => 'nullable|date',
             'sort' => 'nullable|integer',
+            'is_active' => 'sometimes|boolean',
+
         ]);
 
         if ($request->hasFile('photo_path')) {
@@ -69,6 +74,7 @@ class TestimonialController extends Controller
             $path = $request->file('photo_path')->store('testimonials', 'public');
             $data['photo_path'] = $path;
         }
+        $data['is_active'] = $request->boolean('is_active', true);
 
         $testimonial->update($data);
 

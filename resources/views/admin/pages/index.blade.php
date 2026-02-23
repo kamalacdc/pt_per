@@ -8,11 +8,13 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     <a href="{{ route('admin.pages.create') }}" class="btn btn-primary mb-3">Tambah Halaman</a>
-    <table class="table table-bordered">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Judul</th>
                 <th>Slug</th>
+                <th>konten</th>
+                <th>akhiran</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -21,6 +23,8 @@
             <tr>
                 <td>{{ $page->title }}</td>
                 <td>{{ $page->slug }}</td>
+                <td>{{ $page->content }}</td>
+                <td>{{ $page->meta_description }}</td>
                 <td>
                     <a href="{{ route('admin.pages.edit', $page) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus halaman ini?');">
